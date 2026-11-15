@@ -1,0 +1,415 @@
+
+1)
+# Create an array using list
+arr = [10, 20, 30, 40, 50]
+
+print("Original Array:", arr)
+
+# a) Update array
+arr[1] = 25
+print("After Update:", arr)
+
+# b) Slice array
+print("Sliced Array:", arr[1:4])
+
+# c)extend array
+arr.extend([60, 70])
+print("After Extend:", arr)
+
+# d)append element
+arr.append(80)
+print("After Append:", arr)
+
+# e) remove element
+arr.remove(30)
+print("After Remove:", arr)
+
+ Output = 
+Original Array: [10, 20, 30, 40, 50]
+After Update: [10, 25, 30, 40, 50]
+Sliced Array: [25, 30, 40]
+After Extend: [10, 25, 30, 40, 50, 60, 70]
+After Append: [10, 25, 30, 40, 50, 60, 70, 80]
+After Remove: [10, 25, 40, 50, 60, 70, 80]
+PS H:\Dsa> 
+
+2)
+
+# Create an empty list
+mylist = []
+
+#Take size from user
+n = int(input("Enter size of list: "))
+
+#Append elements 
+for i in range(n):
+    num = int(input("Enter element: "))
+    mylist.append(num)
+
+print("Final List:", mylist)
+
+Output = 
+Enter size of list: 4
+Enter element: 12
+Enter element: 34
+Enter element: 56
+Enter element: 78
+Final List: [12, 34, 56, 78]
+PS H:\Dsa> 
+
+3)
+# Create a list
+mylist = [10, 20, 10, 40, 30]
+
+print("Original List:", mylist)
+
+# a) Update
+mylist[1] = 25
+print("After Update:", mylist)
+
+# b) Count
+print("Count of 10:", mylist.count(10))
+
+# c) Sort
+mylist.sort()
+print("After Sort:", mylist)
+
+# d) Insert
+mylist.insert(2, 15)
+print("After Insert:", mylist)
+
+# e) Append
+mylist.append(50)
+print("After Append:", mylist)
+
+# f) Extend
+mylist.extend([60, 70])
+print("After Extend:", mylist)
+
+# g) Pop
+mylist.pop()
+print("After Pop:", mylist)
+
+Output = 
+Original List: [10, 20, 10, 40, 30]
+After Update: [10, 25, 10, 40, 30]
+Count of 10: 2
+After Sort: [10, 10, 25, 30, 40]
+After Insert: [10, 10, 15, 25, 30, 40]
+After Append: [10, 10, 15, 25, 30, 40, 50]
+After Extend: [10, 10, 15, 25, 30, 40, 50, 60, 70]
+After Pop: [10, 10, 15, 25, 30, 40, 50, 60]
+PS H:\Dsa> 
+
+4)
+
+def employee_details(emp_id, empname, empqualification,
+                     empdesignation, empsalary, emp_currentmonthrank):
+
+    print("Employee ID:", emp_id)
+    print("Employee Name:", empname)
+    print("Qualification:", empqualification)
+    print("Designation:", empdesignation)
+
+    if emp_currentmonthrank > 4:
+        empsalary = empsalary + 2500
+        print("Incentive: Rs.2500")
+    else:
+        print("Incentive: Rs.0")
+
+    print("Final Salary: Rs.", empsalary)
+
+
+# calling the function
+employee_details(101, "Asha", "MCA", "Manager", 30000, 5)
+
+Output - 
+Employee ID: 101
+Employee Name: Asha
+Qualification: MCA
+Designation: Manager
+Incentive: Rs.2500
+Final Salary: Rs. 32500
+
+5)
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert from start
+    def insert_start(self, data):
+        newnode = Node(data)
+        newnode.next = self.head
+        self.head = newnode
+
+    # Delete from end
+    def delete_end(self):
+        if self.head is None:
+            print("List is empty")
+            return
+
+        if self.head.next is None:
+            self.head = None
+            return
+
+        temp = self.head
+        while temp.next.next is not None:
+            temp = temp.next
+
+        temp.next = None
+
+    # Sum of elements
+    def sum_elements(self):
+        total = 0
+        temp = self.head
+
+        while temp is not None:
+            total = total + temp.data
+            temp = temp.next
+
+        print("Sum:", total)
+
+    # Traverse
+    def traverse(self):
+        temp = self.head
+
+        if self.head is None:
+            print("List is empty")
+            return
+
+        print("Linked List:", end=" ")
+        while temp is not None:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+
+        print("None")
+
+sll = SinglyLinkedList()
+
+sll.insert_start(30)
+sll.insert_start(20)
+sll.insert_start(10)
+
+print("After Insertion:")
+sll.traverse()
+
+sll.delete_end()
+print("After Deletion:")
+sll.traverse()
+
+sll.sum_elements()
+
+Output -=
+After Insertion:
+Linked List: 10 -> 20 -> 30 -> None
+After Deletion:
+Linked List: 10 -> 20 -> None
+Sum: 30
+
+6)
+ class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert from end
+    def insert_end(self, data):
+        newnode = Node(data)
+
+        if self.head is None:
+            self.head = newnode
+            return
+
+        temp = self.head
+        while temp.next is not None:
+            temp = temp.next
+
+        temp.next = newnode
+
+    # Delete from position
+    def delete_position(self, pos):
+        if self.head is None:
+            print("List is empty")
+            return
+
+        if pos < 1:
+            print("Invalid position")
+            return
+
+        if pos == 1:
+            self.head = self.head.next
+            return
+
+        temp = self.head
+
+        for i in range(pos - 2):
+            if temp.next is None:
+                print("Invalid position")
+                return
+            temp = temp.next
+
+        if temp.next is None:
+            print("Invalid position")
+            return
+
+        temp.next = temp.next.next
+
+    # Multiplication of all elements
+    def multiply(self):
+        product = 1
+        temp = self.head
+
+        while temp is not None:
+            product = product * temp.data
+            temp = temp.next
+
+        print("Multiplication:", product)
+
+    # Traverse
+    def traverse(self):
+        temp = self.head
+
+        print("Linked List:", end=" ")
+        while temp is not None:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+
+        print("None")
+
+sll = SinglyLinkedList()
+
+sll.insert_end(2)
+sll.insert_end(3)
+sll.insert_end(4)
+
+print("Original List:")
+sll.traverse()
+
+sll.delete_position(2)
+
+print("After Deletion:")
+sll.traverse()
+
+sll.multiply()
+
+OUTPUT = 
+ Original List:
+Linked List: 2 -> 3 -> 4 -> None
+After Deletion:
+Linked List: 2 -> 4 -> None
+Multiplication: 8
+
+7) 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert from start
+    def insert_start(self, data):
+        newnode = Node(data)
+
+        if self.head is None:
+            self.head = newnode
+            newnode.next = self.head
+            return
+
+        temp = self.head
+
+        while temp.next != self.head:
+            temp = temp.next
+
+        newnode.next = self.head
+        temp.next = newnode
+        self.head = newnode
+
+    # Insert from end
+    def insert_end(self, data):
+        newnode = Node(data)
+
+        if self.head is None:
+            self.head = newnode
+            newnode.next = self.head
+            return
+
+        temp = self.head
+
+        while temp.next != self.head:
+            temp = temp.next
+
+        temp.next = newnode
+        newnode.next = self.head
+
+    # Update specific position
+    def update(self, pos, value):
+        if self.head is None or pos < 1:
+            print("Invalid position")
+            return
+
+        temp = self.head
+
+        for i in range(pos - 1):
+            temp = temp.next
+
+            if temp == self.head:
+                print("Invalid position")
+                return
+
+        temp.data = value
+
+    # Traverse
+    def traverse(self):
+        if self.head is None:
+            print("List is empty")
+            return
+
+        temp = self.head
+
+        print("Circular Linked List:", end=" ")
+
+        while True:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+
+            if temp == self.head:
+                break
+
+        print("(Back to Head)")
+
+cll = CircularLinkedList()
+
+cll.insert_start(20)
+cll.insert_start(10)
+
+cll.insert_end(30)
+
+print("Original List:")
+cll.traverse()
+
+cll.update(2, 25)s
+
+print("After Updating:")
+cll.traverse()
+
+Output = 
+Original List:
+Circular Linked List: 10 -> 20 -> 30 -> (Back to Head)
+After Updating:
+Circular Linked List: 10 -> 25 -> 30 -> (Back to Head)
+PS H:\Dsa> 
